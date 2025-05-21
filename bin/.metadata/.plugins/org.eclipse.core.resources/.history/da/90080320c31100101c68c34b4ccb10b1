@@ -1,0 +1,48 @@
+package jsp.springboot.D1;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Controller {
+
+	@GetMapping("/info")
+	public String getInfo()
+	{
+		return "Hello Spring";
+	}
+	
+	//Request param
+	@GetMapping("/Student")
+	public String getstudent(@RequestParam int id,@RequestParam String name)
+	{
+		return "ID:"+id+",NAME:"+name;
+		
+	}
+	//path variable
+	@GetMapping("/Employee/{role}/{id}")
+	public String getemployee(@PathVariable String role,@PathVariable int id)
+	{
+		return "ROLE:"+role+"ID:"+id;
+		
+	}
+	//Request Header
+	@GetMapping("/info")
+	public String getinfo(@RequestHeader int token)
+	{
+		return "TOKEN:"+token;
+						
+	}
+	// Request body
+	@PostMapping("/Student")
+	public String saveStudent(@RequestBody Student student) {
+	    return student.toString();
+	}
+	
+}
